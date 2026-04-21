@@ -1,4 +1,4 @@
-# Wordlist Generator
+# Dicty
 
 Herramienta de línea de comandos para generar diccionarios de contraseñas personalizados basados en información personal del objetivo. Útil para auditorías de seguridad y pentesting.
 
@@ -8,7 +8,7 @@ Herramienta de línea de comandos para generar diccionarios de contraseñas pers
 
 ## Cómo funciona
 
-El script hace un cuestionario interactivo donde se ingresan datos del objetivo: nombre, apellidos, fechas, DNI, mascotas, ciudad, gustos, etc. Los campos que se dejan en blanco son ignorados.
+Dicty hace un cuestionario interactivo donde se ingresan datos del objetivo: nombre, apellidos, fechas, DNI, mascotas, ciudad, gustos, etc. Los campos que se dejan en blanco son ignorados.
 
 Con esa información genera combinaciones aplicando:
 
@@ -18,7 +18,7 @@ Con esa información genera combinaciones aplicando:
 - Combinaciones de pares de tokens con separadores (_, ., -, @, #)
 - Sufijos y prefijos comunes (123, !, 666, 2024, @, etc.)
 
-Las fechas se parsean automáticamente y generan múltiples fragmentos: día, mes, año, combinaciones (ddmm, mmddyyyy, etc.).
+Las fechas se parsean automáticamente y generan múltiples fragmentos: día, mes, año, y combinaciones (ddmm, mmddyyyy, etc.).
 
 La generación escribe directamente al disco sin acumular datos en memoria, por lo que funciona sin importar la cantidad de tokens ingresados.
 
@@ -34,7 +34,7 @@ La generación escribe directamente al disco sin acumular datos en memoria, por 
 ## Uso
 
 ```bash
-python3 wordlist_gen.py
+python3 Dicty.py
 ```
 
 El script guía el proceso paso a paso. Al final pregunta el nombre del archivo de salida y los filtros de longitud mínima y máxima.
@@ -55,20 +55,22 @@ En Windows:
 sort /unique wordlist.txt > wordlist_limpio.txt
 ```
 
+También se puede responder "s" cuando Dicty pregunta si deduplicar al finalizar (solo Linux/Mac).
+
 ---
 
 ## Ejemplo de salida
 
-Con nombre `Dylan` y fecha de nacimiento `19/08/2001` el diccionario incluye entradas como:
+Con nombre `Ezequiel` y fecha de nacimiento `14/06/1993` el diccionario incluye entradas como:
 
 ```
-dylan
-DYLAN
-dylan123
-dylan_2001
-2001_dylan
-dylan.1908
-19082001dylan
-dy14n_2001
-nalyD@123
+ezequiel
+EZEQUIEL
+ezequiel123
+ezequiel_1993
+1993_ezequiel
+ezequiel.1406
+14061993ezequiel
+3z3qu13l_1993
+leiuqeze@123
 ```
