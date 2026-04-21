@@ -2,7 +2,8 @@
 # -*- coding: utf-8 -*-
 """
 ╔══════════════════════════════════════════════════════════════╗
-║           WORDLIST GENERATOR - Diccionario Personalizado      ║
+║                         D I C T Y                            ║
+║           Generador de Diccionarios Personalizado            ║
 ║                  Herramienta OSINT / Pentesting               ║
 ╚══════════════════════════════════════════════════════════════╝
 ADVERTENCIA: Solo para uso ético y legal.
@@ -78,40 +79,40 @@ def cuestionario():
     print("═"*62 + "\n")
     datos = {}
     print("── DATOS PERSONALES ──────────────────────────────────────")
-    datos['nombre']           = preguntar("Nombre",             "Dylan")
-    datos['segundo_nombre']   = preguntar("Segundo nombre",     "Matías")
-    datos['apellido']         = preguntar("Apellido",           "García")
-    datos['segundo_apellido'] = preguntar("Segundo apellido",   "López")
-    datos['apodo']            = preguntar("Apodo / Nickname",   "dyl")
+    datos['nombre']           = preguntar("Nombre",             "Facundo")
+    datos['segundo_nombre']   = preguntar("Segundo nombre",     "Ezequiel")
+    datos['apellido']         = preguntar("Apellido",           "Pereyra")
+    datos['segundo_apellido'] = preguntar("Segundo apellido",   "Romero")
+    datos['apodo']            = preguntar("Apodo / Nickname",   "facu")
     print("\n── FECHAS ────────────────────────────────────────────────")
-    datos['fecha_nacimiento']  = preguntar("Fecha de nacimiento",  "19/08/2001")
+    datos['fecha_nacimiento']  = preguntar("Fecha de nacimiento",  "07/11/1998")
     datos['fecha_aniversario'] = preguntar("Fecha de aniversario", "14/02/2019")
     datos['fecha_especial']    = preguntar("Otra fecha importante", "25/12/2000")
     print("\n── DOCUMENTOS E IDENTIFICADORES ─────────────────────────")
-    datos['dni']           = preguntar("DNI / Cédula",     "12345678")
-    datos['telefono']      = preguntar("Teléfono",         "1155667788")
-    datos['email_usuario'] = preguntar("Usuario de email", "dylan123")
+    datos['dni']           = preguntar("DNI / Cédula",     "38420917")
+    datos['telefono']      = preguntar("Teléfono",         "1162849031")
+    datos['email_usuario'] = preguntar("Usuario de email", "facupereyra")
     print("\n── LUGAR ─────────────────────────────────────────────────")
     datos['ciudad'] = preguntar("Ciudad",           "BuenosAires")
-    datos['barrio'] = preguntar("Barrio / Colonia", "Palermo")
+    datos['barrio'] = preguntar("Barrio / Colonia", "Floresta")
     datos['pais']   = preguntar("País",             "Argentina")
     print("\n── FAMILIA Y ENTORNO ─────────────────────────────────────")
-    datos['pareja']   = preguntar("Nombre pareja/ex",   "Valentina")
-    datos['madre']    = preguntar("Nombre madre",       "María")
-    datos['padre']    = preguntar("Nombre padre",       "Carlos")
-    datos['hijos']    = preguntar("Nombre/s hijo/s",    "Luca, Emma")
-    datos['mascotas'] = preguntar("Nombre/s mascota/s", "Thor, Luna")
+    datos['pareja']   = preguntar("Nombre pareja/ex",   "Rocio")
+    datos['madre']    = preguntar("Nombre madre",       "Graciela")
+    datos['padre']    = preguntar("Nombre padre",       "Osvaldo")
+    datos['hijos']    = preguntar("Nombre/s hijo/s",    "Thiago, Abril")
+    datos['mascotas'] = preguntar("Nombre/s mascota/s", "Rufo, Negra")
     print("\n── GUSTOS E INTERESES ────────────────────────────────────")
-    datos['equipo']         = preguntar("Equipo de fútbol",    "Boca")
-    datos['banda_pelicula'] = preguntar("Banda/Película fav.", "Nirvana")
-    datos['videojuego']     = preguntar("Videojuego fav.",     "Minecraft")
-    datos['palabra_fav']    = preguntar("Palabra/frase fav.",  "freedom")
+    datos['equipo']         = preguntar("Equipo de fútbol",    "Independiente")
+    datos['banda_pelicula'] = preguntar("Banda/Película fav.", "Divididos")
+    datos['videojuego']     = preguntar("Videojuego fav.",     "FIFA")
+    datos['palabra_fav']    = preguntar("Palabra/frase fav.",  "cañero")
     print("\n── TRABAJO / ESTUDIO ─────────────────────────────────────")
-    datos['empresa']     = preguntar("Empresa / Institución", "Google")
-    datos['profesion']   = preguntar("Profesión / Carrera",   "developer")
-    datos['usuario_red'] = preguntar("Usuario en redes",      "dylan_arg")
+    datos['empresa']     = preguntar("Empresa / Institución", "Mercadolibre")
+    datos['profesion']   = preguntar("Profesión / Carrera",   "contador")
+    datos['usuario_red'] = preguntar("Usuario en redes",      "facu_rey")
     print("\n── EXTRA ─────────────────────────────────────────────────")
-    datos['numero_suerte']   = preguntar("Número de la suerte", "7")
+    datos['numero_suerte']   = preguntar("Número de la suerte", "10")
     datos['palabra_extra_1'] = preguntar("Palabra extra 1")
     datos['palabra_extra_2'] = preguntar("Palabra extra 2")
     datos['palabra_extra_3'] = preguntar("Palabra extra 3")
@@ -130,16 +131,11 @@ def procesar_datos(datos):
     return tokens
 
 # ─────────────────────────────────────────────
-# GENERACIÓN STREAMING PURA — sin RAM acumulada
+# GENERACIÓN STREAMING — sin RAM acumulada
 # ─────────────────────────────────────────────
 def generar_y_escribir(tokens, archivo, min_len, max_len):
-    """
-    Escribe directamente al archivo, línea por línea.
-    NO usa ningún set en memoria → uso de RAM constante y mínimo.
-    Los duplicados se pueden eliminar después con: sort -u archivo.txt -o archivo.txt
-    """
     escritas = 0
-    BUFFER_SIZE = 50_000  # líneas en buffer antes de flush
+    BUFFER_SIZE = 50_000
 
     def es_valida(p):
         return min_len <= len(p) <= max_len
@@ -158,7 +154,6 @@ def generar_y_escribir(tokens, archivo, min_len, max_len):
 
     with open(archivo, 'w', encoding='utf-8', buffering=1_048_576) as f:
 
-        # ── Paso 1: variantes individuales + afijos ──
         print("[*] [1/2] Variantes individuales + afijos...")
         for t in tokens:
             for v in variantes[t]:
@@ -175,7 +170,6 @@ def generar_y_escribir(tokens, archivo, min_len, max_len):
         mb = os.path.getsize(archivo) / 1_048_576
         print(f"    {escritas:,} entradas | {mb:.1f} MB")
 
-        # ── Paso 2: combinaciones de pares ──
         token_lista = list(tokens)
         total_pares = len(token_lista) * (len(token_lista) - 1)
         pares_ok = 0
@@ -194,7 +188,6 @@ def generar_y_escribir(tokens, archivo, min_len, max_len):
                             combo = f"{v1}{sep}{v2}"
                             if es_valida(combo):
                                 buffer.append(combo); escritas += 1
-                    # Afijos solo en combo sin separador (evita explosión)
                     for v2 in vars2:
                         base_combo = f"{v1}{v2}"
                         for afijo in SUFIJOS_PREFIJOS:
@@ -217,24 +210,20 @@ def generar_y_escribir(tokens, archivo, min_len, max_len):
     return escritas
 
 # ─────────────────────────────────────────────
-# DEDUPLICAR (opcional, usa sort externo)
+# DEDUPLICAR
 # ─────────────────────────────────────────────
 def deduplicar(archivo):
-    """Usa sort del SO para deduplicar sin cargar el archivo en RAM."""
     import subprocess
-    print(f"[*] Deduplicando con sort (puede tardar)...")
+    print(f"[*] Deduplicando con sort...")
     tmp = archivo + ".tmp"
-    ret = subprocess.run(
-        ["sort", "-u", archivo, "-o", tmp],
-        capture_output=True
-    )
+    ret = subprocess.run(["sort", "-u", archivo, "-o", tmp], capture_output=True)
     if ret.returncode == 0:
         os.replace(tmp, archivo)
-        print(f"    Deduplicación completada.")
+        print(f"    Deduplicacion completada.")
         return True
     else:
-        print(f"    [!] sort no disponible (Windows). El archivo puede tener duplicados.")
-        print(f"        Para deduplicar manualmente: sort /unique archivo.txt > limpio.txt")
+        print(f"    [!] sort no disponible (Windows).")
+        print(f"        Para deduplicar: sort /unique archivo.txt > limpio.txt")
         if os.path.exists(tmp):
             os.remove(tmp)
         return False
@@ -245,14 +234,15 @@ def deduplicar(archivo):
 def main():
     print("""
 ╔══════════════════════════════════════════════════════════════╗
-║        WORDLIST GENERATOR — Diccionario Personalizado        ║
+║                         D I C T Y                            ║
+║           Generador de Diccionarios Personalizado            ║
 ║                    Solo uso ético / legal                    ║
 ╚══════════════════════════════════════════════════════════════╝
     """)
-    print("  ⚠  ADVERTENCIA LEGAL")
+    print("  ADVERTENCIA LEGAL")
     print("  Esta herramienta es para uso en cuentas propias o")
     print("  con autorización explícita del propietario.\n")
-    if input("  ¿Confirmás que usarás esto de forma ética? [s/N]: ").strip().lower() != 's':
+    if input("  Confirmas que usaras esto de forma etica? [s/N]: ").strip().lower() != 's':
         print("\n  Saliendo."); sys.exit(0)
 
     datos = cuestionario()
@@ -268,13 +258,13 @@ def main():
     nombre = input("  → Nombre del archivo [wordlist.txt]: ").strip() or "wordlist.txt"
     if not nombre.endswith(".txt"):
         nombre += ".txt"
-    s = input("  → Longitud mínima [4]: ").strip()
+    s = input("  → Longitud minima [4]: ").strip()
     min_len = int(s) if s.isdigit() else 4
-    s = input("  → Longitud máxima [32]: ").strip()
+    s = input("  → Longitud maxima [32]: ").strip()
     max_len = int(s) if s.isdigit() else 32
-    ded = input("  → ¿Deduplicar al final? (requiere sort) [s/N]: ").strip().lower() == 's'
+    ded = input("  → Deduplicar al final? (requiere sort) [s/N]: ").strip().lower() == 's'
 
-    print(f"\n[*] Generando → '{nombre}' | Escritura directa al disco | RAM mínima\n")
+    print(f"\n[*] Generando → '{nombre}' | Escritura directa al disco | RAM minima\n")
     inicio = datetime.now()
     total = generar_y_escribir(tokens, nombre, min_len, max_len)
 
@@ -284,17 +274,16 @@ def main():
     duracion = (datetime.now() - inicio).total_seconds()
     mb = os.path.getsize(nombre) / 1_048_576
 
-    # Contar líneas reales del archivo
     with open(nombre, 'rb') as f:
         lineas = sum(1 for _ in f)
 
     print(f"""
 ╔══════════════════════════════════════════════════════════════╗
-║                     GENERACIÓN COMPLETA                      ║
+║                     GENERACION COMPLETA                      ║
 ╠══════════════════════════════════════════════════════════════╣
 ║  Archivo:     {nombre:<46}║
 ║  Entradas:    {f"{lineas:,}":<46}║
-║  Tamaño:      {f"{mb:.2f} MB":<46}║
+║  Tamanio:     {f"{mb:.2f} MB":<46}║
 ║  Tiempo:      {f"{duracion:.1f} segundos":<46}║
 ╚══════════════════════════════════════════════════════════════╝
     """)
