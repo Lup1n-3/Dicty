@@ -4,7 +4,7 @@
 ╔══════════════════════════════════════════════════════════════╗
 ║                         D I C T Y                            ║
 ║           Generador de Diccionarios Personalizado            ║
-║                  Herramienta OSINT / Pentesting               ║
+║                 Herramienta OSINT / Pentesting               ║
 ╚══════════════════════════════════════════════════════════════╝
 ADVERTENCIA: Solo para uso ético y legal.
 """
